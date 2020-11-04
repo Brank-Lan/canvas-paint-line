@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <canvas id="canvas"></canvas>
+
+    <script>
+        let canvas = document.getElementById('canvas')
+        canvas.width = document.documentElement.clientWidth
+        canvas.height = document.documentElement.clientHeight
+
+        let painting = false
+
+        let ctx = canvas.getContext('2d')
+        ctx.fillStyle = 'black'
+        ctx.strokeStyle = 'none'
+        canvas.onmousedown = (e) => {
+            painting = true
+        }
+        canvas.onmousemove = (e) => {
+            if (painting) {
+                ctx.beginPath();
+                ctx.arc(e.clientX, e.clientY, 10, 0, 2 * Math.PI)
+                ctx.stroke()
+                ctx.fill()
+            } else {
+                console.log('什么都不做')
+            }
+        }
+        canvas.onmouseup = (e) => {
+            painting = false
+        }
+    </script>
+
+</body>
+
+</html>
